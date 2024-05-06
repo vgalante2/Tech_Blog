@@ -1,5 +1,18 @@
 const router = require('express').Router()
 const Post = require('../models/Post')
+const User = require('../models/User')
+
+
+function isAuth(req, res, next) {
+    if(!req.session.user_id) {
+       res.redirect('/login')
+    }
+
+    return next()
+}
+
+
+
 
 // Get home page
 router.get('/', async (req, res) => {
@@ -14,6 +27,22 @@ router.get('/', async (req, res) => {
 
 router.get('/create', (req, res) => {
     res.render('form')
+})
+
+router.get('/register', (req, res) => {
+    res.render('register')
+})
+
+router.get('/users',isAuth, async (req, res) => {
+let userObj ={
+    isLoggedIn: true,
+    user: user.id
+}
+
+  const user = await User.findByPk(req.user.id)
+
+  console.log(userObj)
+  res.render('register', userObj)
 })
 
 
