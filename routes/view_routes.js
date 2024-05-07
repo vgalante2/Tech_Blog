@@ -30,19 +30,31 @@ router.get('/create', (req, res) => {
 })
 
 router.get('/register', (req, res) => {
-    res.render('register')
+    let userObj = {
+        isLoggedIn: req.user ? true : false,
+        user: req.user
+    }
+    res.render('register', userObj)
 })
 
-router.get('/users',isAuth, async (req, res) => {
+router.get('/login', (req, res) => {
+    let userObj = {
+        isLoggedIn: req.user ? true : false,
+        user: req.user
+    }
+    res.render('login', userObj)
+})
+
+router.get('/user', isAuth, async (req, res) => {
 let userObj ={
     isLoggedIn: true,
-    user: user.id
+    user: req.user
 }
 
   const user = await User.findByPk(req.user.id)
 
   console.log(userObj)
-  res.render('register', userObj)
+  res.render('dashboard', userObj)
 })
 
 

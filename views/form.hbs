@@ -1,5 +1,14 @@
-<form action="/posts" method="POST">
-{{!-- Make sure your name equals the model properties --}}
-<input name="text" type="text" placeholder="type the post text">
-<button>Submit</button>
+
+
+<form  action="/posts" method="POST" class="d-flex align-items-center justify-content-center flex-column border h-75">
+    <h3>Add a post!</h3>
+  <div class="mb-3">
+    <label  for="title" class="form-label">Title</label>
+    <input type="text" name="title" class="form-control" id="title">
+  </div>
+  <div class="mb-3">
+    <label for="text" class="form-label">Text</label>
+    <textarea name="text" type="text" class="form-control" rows="5"></textarea>
+  </div>
+  <button type="submit" class="btn btn-info">Submit</button>
 </form>

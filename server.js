@@ -1,11 +1,12 @@
+require('dotenv').config()
 const express = require('express')
 const client = require('./db/client')
-// const session = require('express-session')
-// const SequelizeStore = require("connect-session-sequelize")(session.Store)
+const session = require('express-session')
+const SequelizeStore = require("connect-session-sequelize")(session.Store)
 const { engine } = require('express-handlebars')
 
 
-// const store = new SequelizeStore({ db: client })
+const store = new SequelizeStore({ db: client })
 // add models
 
 const app = express()
@@ -18,7 +19,21 @@ const view_routes = require('./routes/view_routes')
 // used to parse incoming requests with JSON payloads.
 //  When a client sends data to the server with the Content-Type header set to application/json, 
 // this middleware parses the JSON data and makes it available in req.body.
+
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+
+//  set up the express sessions
+app.use(session(
+    {
+        secret: 'somethin',
+        store,
+        resave: false,
+        saveUninitialized: true,
+        cookie: { maxAge: 10000}
+    }
+))
+
 
 
 // set up handlebars template engine
@@ -37,16 +52,7 @@ app.use(express.static('public'))
 
 
 
-//  set up the express sessions
-// app.use(session(
-//     {
-//         secret: process.env.SESSION_SECRET,
-//         store,
-//         resave: false,
-//         saveUninitialized: true,
-//         cookie: { maxAge: 10000}
-//     }
-// ))
+
 
 
 
