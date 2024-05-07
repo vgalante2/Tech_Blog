@@ -3,7 +3,7 @@ const client = require('../db/client')
 const { hash, compare } = require("bcrypt");
 
 class User extends Model {
-    async comparePass(formPass) {
+    async validatePass(formPass) {
  const is_valid = await compare(formPass, this.password)
  return is_valid
     }
@@ -52,3 +52,5 @@ User.init(
       }
 )
 
+
+module.exports = User

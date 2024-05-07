@@ -1,13 +1,17 @@
+    <div class="d-flex align-items-center justify-content-evenly flex-column h-100">
     <h1>Posts</h1>
 
     {{#each post}}
-    <div class="post"> 
-        <h3>{{text}}</h3>
-        <p>Created On: {{createdAt}}</p>
+    <div class="post d-flex align-items-start justify-content-center flex-column bg-secondary rounded p-3"> 
+        <h3 class="text-light">{{title}}</h3>
+        <p class="text-dark-subtle">{{text}}</p>
+        <p class="text-info">Created On: {{createdAt}}</p>
     </div>
     {{/each}}
 
 
     {{#unless post}}
-    <p>Nothing has been posted yet </p>
+    <p>Nothing has been posted yet 🫠 </p>
     {{/unless}}
+    </div>
+    

@@ -1,0 +1,20 @@
+<div class="d-flex flex-column align-items-center justify-content-center h-75 ">
+    <h1>Login</h1>
+   <form class="d-flex flex-column align-items-center justify-content-center gap-2" action="/api/users/auth/login" method="POST">
+  <div class="mb-3">
+    <input name="username" type="text" class="form-control" id="username" placeholder="Enter your username">
+  </div>
+  <div class="mb-3">
+    <input name="password" type="password" class="form-control" id="password" placeholder="Enter your password">
+  </div>
+  <button type="submit" class="btn btn-info form-control">Submit</button>
+  <a class="text-decoration-none text-info" href="/register">Not a user? click to register</a>
+</form>
+</div>
+
+
+{{!-- <form action="/api/users/auth/login" method="POST"class="register-form px-5">
+    <input class="text-input row mt-3 ms-1 form-control" name="username"   type="text" placeholder="Enter your username">
+    <input class="text-input row mt-3 ms-1 form-control" name="password"   type="password" placeholder="Enter your password">
+    <button class="btn btn-success row mt-3 ms-1 form-control" id="search-btn"  type="submit">Login</button>
+</form> --}}
