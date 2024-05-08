@@ -12,8 +12,6 @@ function isAuth(req, res, next) {
 }
 
 
-
-
 // Get home page
 router.get('/', async (req, res) => {
     const post = await Post.findAll()
@@ -25,8 +23,8 @@ router.get('/', async (req, res) => {
 
 })
 
-router.get('/create', (req, res) => {
-    res.render('form')
+router.get('/dashboard', (req, res) => {
+    res.render('dashboard')
 })
 
 router.get('/register', (req, res) => {
@@ -40,7 +38,9 @@ router.get('/register', (req, res) => {
 router.get('/login', (req, res) => {
     let userObj = {
         isLoggedIn: req.user ? true : false,
-        user: req.user
+        user: req.user,
+    
+
     }
     res.render('login', userObj)
 })

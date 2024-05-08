@@ -6,33 +6,37 @@ class Post extends Model {}
 
 Post.init(
     {
-    id: {
+    id: { 
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
-        },
-    title: {
+        }, 
+    title: { 
         type: DataTypes.STRING,
         allowNull: false
-    },
-    text: {
+    }, 
+    text: { 
         type: DataTypes.STRING,
         allowNull: false
-    },
-    user_id: {
+    }, 
+    user_id: { 
         type: DataTypes.INTEGER,
-        references: {
+        references: { 
             model: 'users',
             key: 'id',
-        },
-        allowNull: false
-    }
-    },
-    {
+        }, 
+    } 
+    }, 
+    { 
      sequelize: client,
-     modelName: 'post'
-    }
+     modelName: 'post',
+     indexes: [ 
+        { 
+            fields: ['user_id']
+        } 
+     ] 
+    } 
 )
 
 module.exports = Post
