@@ -69,12 +69,11 @@ router.post('/login', async (req, res) => {
                 console.log('youre logged in ' + user.username)
             }
            
-            req.session.user_id = user.id; // Set user session
-            console.log('You are logged in:', user.username);
-             res.redirect('/dashboard');
         }
         
-        return res.redirect(req.get('referer'))
+        req.session.user_id = user.id; // Set user session
+            console.log('You are logged in:', user.username);
+             res.redirect('/dashboard');
 
     } catch (err) {
        console.log(err)
