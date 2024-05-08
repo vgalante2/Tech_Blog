@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
 
     }
     catch (err) {
-        handleError(err, res)
+        console.log(err)
     }
 })
 
@@ -40,12 +40,14 @@ router.post('/register', async (req, res) => {
 
         const user = await User.create(newUser)
         req.session.user_id = user.id
+        console.log('user logged in', user)
         return res.redirect('/dashboard')
 
     } catch (err) {
         console.log(err)
     }
 })
+
 
 
 router.post('/login', async (req, res) => {
@@ -57,20 +59,19 @@ router.post('/login', async (req, res) => {
             where: {
                 username: input.username,
             }
-        })
+        });
+        console.log('User found:', user)
         if (user) {
             console.log('Theres a user: ' + user.username)
-            const is_valid = await user.validatePass(input.password)
+            const is_valid = await user.validatePass(input.password);
+            console.log('Password valid:', is_valid);
             if (is_valid) {
                 console.log('youre logged in ' + user.username)
-                req.session.user_id = user.id
-                req.session.username = user.username
-                
-                return res.redirect(req.get('referer'))
-                
             }
            
-            return res.redirect(req.get('referer'))
+            req.session.user_id = user.id; // Set user session
+            console.log('You are logged in:', user.username);
+             res.redirect('/dashboard');
         }
         
         return res.redirect(req.get('referer'))
