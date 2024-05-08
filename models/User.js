@@ -30,7 +30,7 @@ User.init(
         },
         password: {
             type: DataTypes.STRING,
-            notNull: true,
+            allowNull: false,
             validate: {
                 len: 6
             }
@@ -38,12 +38,12 @@ User.init(
     },
     {
         sequelize: client,
+        modelName: "user",
         hooks: {
           async beforeCreate(user) {
             user.password = await hash(user.password, 10);
           },
         },
-        modelName: "user",
         scopes: {
           withoutPassword: {
             attributes: { exclude: ["password"] },
