@@ -4,25 +4,20 @@ const client = require('./db/client')
 const session = require('express-session')
 const SequelizeStore = require("connect-session-sequelize")(session.Store)
 const { engine } = require('express-handlebars')
-
-
 const store = new SequelizeStore({ db: client })
-
-
-const app = express()
-const PORT = process.env.PORT || 3333
-
-
+const {User,Post} = require('./models')
 
 // Pull in your routes
 const routes = require('./routes')
 
+const app = express()
+const PORT = process.env.PORT || 3333
 
 // used to parse incoming requests with JSON payloads.
 //  When a client sends data to the server with the Content-Type header set to application/json, 
 // this middleware parses the JSON data and makes it available in req.body.
 
-app.use(express.json())
+// app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 //  set up the express sessions
@@ -32,7 +27,7 @@ app.use(session(
         store,
         resave: false,
         saveUninitialized: true,
-        cookie: { maxAge: 10000}
+        cookie: { maxAge:  1000000}
     }
 ))
 
@@ -57,7 +52,7 @@ app.use('/', routes)
 client.sync({force: false})  
 .then(() => { 
     app.listen(PORT, ()=> {  
-        console.log('Server running on port: ' + PORT )  
+        console.log('Server running on port: ', PORT )  
     })  
 }) 
 

@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Post = require('../models/Post')
-const User = require('../models/User')
+
 
 function isAuth(req, res, next) {
     if(!req.session.user_id) {
@@ -11,9 +11,8 @@ function isAuth(req, res, next) {
 }
 
 
-
 // Create a post
-router.post('/', isAuth, async (req, res) => {
+router.post('/posts', async (req, res) => {
     try {
         if (!req.session.user_id) {
             // If there's no user_id in the session, respond with an error or redirect
@@ -34,5 +33,8 @@ router.post('/', isAuth, async (req, res) => {
         }
     }
 });
+
+
+
 
 module.exports = router

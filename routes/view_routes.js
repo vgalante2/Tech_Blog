@@ -11,12 +11,8 @@ function isAuth(req, res, next) {
     return next()
 }
 
-
-// Get home page
 router.get('/', async (req, res) => {
     const post = await Post.findAll()
-
-
     res.render('home', {
         post: post.map(p => p.get({plain: true}) )
     })
@@ -24,10 +20,15 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/dashboard', (req, res) => {
-    res.render('dashboard')
+    let userObj = {
+        isLoggedIn: req.body ? true : false,
+        user: req.user
+    }
+    
+    res.render('dashboard', userObj)
 })
 
-router.get('/register', (req, res) => {
+router.get('/register', async (req, res) => {
     let userObj = {
         isLoggedIn: req.user ? true : false,
         user: req.user
@@ -35,14 +36,23 @@ router.get('/register', (req, res) => {
     res.render('register', userObj)
 })
 
-router.get('/login', (req, res) => {
+router.get('/login', async (req, res) => {
     let userObj = {
         isLoggedIn: req.user ? true : false,
         user: req.user,
-    
-
     }
+
     res.render('login', userObj)
+})
+
+
+router.get('/logout', async (req, res) => {
+    let userObj = {
+        isLoggedIn: req.user ? true : false,
+        user: req.user
+    }
+
+    res.render('logout', userObj)
 })
 
 router.get('/user', isAuth, async (req, res) => {
