@@ -1,7 +1,7 @@
     <div class="d-flex align-items-center justify-content-evenly flex-column h-100">
     <h1>Posts</h1>
 
-    {{#each post}}
+    {{#each posts}}
     <div class="post d-flex align-items-start justify-content-center flex-column bg-secondary rounded p-3"> 
         <h3 class="text-light">{{title}}</h3>
         <p class="text-dark-subtle">{{text}}</p>
@@ -10,7 +10,7 @@
     {{/each}}
 
 
-    {{#unless post}}
+    {{#unless posts}}
     <p>Nothing has been posted yet 🫠 </p>
     {{/unless}}
     </div>

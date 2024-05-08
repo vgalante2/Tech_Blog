@@ -7,7 +7,10 @@ async function attachUser(req, res, next) {
     if (user_id) {
         const user = await User.findByPk(user_id, {
             attributes: ['id', 'username', 'email', 'posts'],
-            include: [Post] 
+            include: [{
+                model: Post,
+                as: 'posts'  // Ensure this alias matches your model associations
+            }],
         })
         req.user = user.get({plain:true})
         return next()

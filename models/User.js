@@ -2,10 +2,11 @@ const { DataTypes, Model} = require('sequelize')
 const client = require('../db/client')
 const { hash, compare } = require("bcrypt");
 
+
 class User extends Model {
-    async validatePass(formPass) {
- const is_valid = await compare(formPass, this.password)
- return is_valid
+    async validatePass(formPassword) {
+ const is_valid = await compare(formPassword, this.password);
+ return is_valid;
     }
 }
 
@@ -14,12 +15,12 @@ User.init(
     {
         username: {
             type: DataTypes.STRING,
-            notNull: true,
+            allowNull: false,
             unique: true
         },
         email: {
             type: DataTypes.STRING,
-            notNull: true,
+            allowNull: false,
             unique: {
                 args: true,
                 message: "user with this already exists"

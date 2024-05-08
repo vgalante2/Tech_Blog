@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const User = require('../models/User')
-
+const Post = require('../models/Post')
 
 
 
@@ -59,9 +59,10 @@ router.post('/login', async (req, res) => {
             }
         })
         if (user) {
-            console.log('youre logged in ${user.username}')
+            console.log('Theres a user: ' + user.username)
             const is_valid = await user.validatePass(input.password)
             if (is_valid) {
+                console.log('youre logged in ' + user.username)
                 req.session.user_id = user.id
                 req.session.username = user.username
                 
@@ -75,7 +76,17 @@ router.post('/login', async (req, res) => {
         return res.redirect(req.get('referer'))
 
     } catch (err) {
-        handleError(err, res)
+       console.log(err)
+    }
+})
+
+router.get('/logout', async (req, res) => {
+    try {
+        req.session.destroy()
+        return res.redirect('/logout')
+    }
+    catch (err) {
+        console.log(err)
     }
 })
 
