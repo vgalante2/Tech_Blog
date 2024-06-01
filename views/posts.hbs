@@ -1,3 +1,21 @@
- <div class="d-flex align-items-center justify-content-evenly flex-column h-100">
-    {{> postform}}
+<script src="/js/home.js"></script>
+<script src="/js/post.js"></script>
+
+<h1>Post</h1>
+
+
+<div id="post-div">
+    {{#each posts}}
+
+    {{>singlePost this}}
+    <div class="container">
+
+    {{#each this.comments}}
+
+    {{>comment this}}
+
+    {{/each}}
     </div>
+
+    {{/each}}
+</div>

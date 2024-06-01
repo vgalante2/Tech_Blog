@@ -1,16 +1,10 @@
-<div class="d-flex flex-column align-items-center justify-content-center h-75 ">
-    <h1>Login</h1>
-   <form class="d-flex flex-column align-items-center justify-content-center gap-2" action="/auth/login" method="POST">
-  <div class="mb-3">
-    <input name="username" type="text" class="form-control" id="username" autocomplete="username" placeholder="Enter your username">
-  </div>
-  <div class="mb-3">
-    <input name="password" type="password" class="form-control" id="password" autocomplete="current-password" placeholder="Enter your password">
-  </div>
-  <button type="submit" class="btn btn-info form-control">Submit</button>
-  <a class="text-decoration-none text-info" href="/register">Not a user? click to register</a>
+<h1>Log In</h1>
+<form action="/api/users/auth/login" method="POST"class="login-form px-5">
+    <input class="text-input row mt-3 ms-1 form-control" name="username"   type="text" placeholder="Enter your username">
+    <input class="text-input row mt-3 ms-1 form-control" name="password"   type="password" placeholder="Enter your password">
+    <button class="btn btn-success row mt-3 ms-1 form-control" id="search-btn"  type="submit">Login</button>
 </form>
-</div>
+<p class="p-5">Don't have an account? Register Here! <a href="/register">Register Here</a></p>
 
 
 {{!-- <form action="/api/users/auth/login" method="POST"class="register-form px-5">

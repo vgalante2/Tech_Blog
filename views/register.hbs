@@ -1,38 +1,9 @@
-<div class="d-flex flex-column align-items-center justify-content-center h-75">
-  <h1>Register</h1>
-  <form
-    class="d-flex flex-column align-items-center justify-content-center gap-2"
-    action="/auth/register"
-    method="POST"
-  >
-    <div class="mb-3">
-      <input
-        name="email"
-        type="email"
-        class="form-control"
-        id="email"
-        placeholder="Enter your email"
-      />
-    </div>
-    <div class="mb-3">
-      <input
-        name="username"
-        type="text"
-        class="form-control"
-        id="email"
-        placeholder="Enter your username"
-      />
-    </div>
-    <div class="mb-3">
-      <input
-        name="password"
-        type="password"
-        class="form-control"
-        id="password"
-        placeholder="Enter your password"
-      />
-    </div>
-    <button type="submit" class="btn btn-info form-control">Submit</button>
+<h1>Register</h1>
 
-  </form>
-</div>
+<form action="/api/users/auth/register" method="POST" class="register-form px-5" id="register">
+    <input class="text-input row mt-3 ms-1 form-control" name="username" type="text" placeholder="Enter your username">
+    <input class="text-input row mt-3 ms-1 form-control" name="email" type="text" placeholder="Enter your email">
+    <input class="text-input row mt-3 ms-1 form-control" name="password" type="password"
+        placeholder="Enter your password">
+    <button class="btn btn-success row mt-3 ms-1 form-control" id="register-btn" type="submit">Register</button>
+</form>

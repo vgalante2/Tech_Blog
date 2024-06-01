@@ -1,19 +1,26 @@
-<section>
-<div>
-    <h1>Welcome, {{user.username}}</h1>
+<script src="/js/home.js"></script>
+<script src="/js/dashboard.js"></script>
+<h1>Dashboard</h1>
+
+<div id="post-div">
+
+{{#each posts}}
+
+{{>singlePost this}}
+
+{{/each}}
+
 </div>
-<div> 
-  <form  action="/posts" method="POST" class="d-flex align-items-center justify-content-center flex-column border h-75">
-    <h3>Add a post!</h3>
-  <div class="mb-3">
-    <label  for="title" class="form-label">Title</label>
-    <input type="text" name="title" class="form-control" id="title">
-  </div>
-  <div class="mb-3">
-    <label for="text" class="form-label">Text</label>
-    <textarea name="text" type="text" class="form-control" rows="5"></textarea>
-  </div>
-  <button type="submit" class="btn btn-info">Submit</button>
+
+<div class="container d-flex justify-content-center align-items-center">
+  
+
+ <button data-post-id="{{id}}" id="new-post-button" class="btn btn-primary new-post-button mb-2">New Post</button>
+
+
+<form id="new-post-form" action="/api/users/auth/post" style="display: none;" method="POST" class="new-post-form px-5 ">
+    <input class="text-input row mt-3 ms-1 form-control" name="title"   type="text" placeholder="Post Title">
+    <textarea id="text" name="text" placeholder="Type your post here..."></textarea>
+    <button class="btn btn-success row mt-3 ms-1 form-control" id="search-btn"  type="submit">Submit Post</button>
 </form>
 </div>
-</section>
