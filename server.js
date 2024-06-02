@@ -1,14 +1,12 @@
 require('dotenv').config()
 const express = require('express')
+const routes = require('./routes')
+const { engine } = require('express-handlebars')
 const client = require('./db/client')
 const session = require('express-session')
 const SequelizeStore = require("connect-session-sequelize")(session.Store)
-const { engine } = require('express-handlebars')
 const store = new SequelizeStore({ db: client })
-const {User,Post} = require('./models')
 
-// Pull in your routes
-const routes = require('./routes')
 
 const app = express()
 const PORT = process.env.PORT || 3333
@@ -17,17 +15,17 @@ const PORT = process.env.PORT || 3333
 //  When a client sends data to the server with the Content-Type header set to application/json, 
 // this middleware parses the JSON data and makes it available in req.body.
 
-// app.use(express.json())
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 //  set up the express sessions
 app.use(session(
     {
-        secret: 'something',
+        secret: process.env.SESSION_SECRET,
         store,
         resave: false,
         saveUninitialized: true,
-        cookie: { secure: true}
+        cookie: { maxAge: 1000000 }
     }
 ))
 

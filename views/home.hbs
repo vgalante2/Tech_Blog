@@ -1,4 +1,12 @@
-    <div class="d-flex align-items-center justify-content-evenly flex-column h-100">
-   <h1>Home</h1>
-    </div>
-    
+<script src="/js/home.js"></script>
+
+<h1>Tech Blog</h1>
+<div id="post-div">
+
+{{#each posts}}
+
+{{>singlePost this}}
+
+{{/each}}
+
+</div>

@@ -1,0 +1,35 @@
+<div class="container mt-2">
+    <div class="comment border p-3 mb-3" data-comment-id="{{id}}">
+        <div class="row mb-2">
+            <div class="col">
+                <h2 class="post-title">{{username}} says</h2>
+            </div>
+            <div class="col-auto text-muted">
+                <p class="comment-info">on {{date}}</p>
+            </div>
+            {{#if canEdit}}
+            <div class="col-auto">
+                <button class="btn btn-warning btn-sm edit-comment" data-comment-id="{{id}}">Edit</button>
+                <button class="btn btn-danger btn-sm delete-comment" data-comment-id="{{id}}">Delete</button>
+            </div>
+            {{/if}}
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="comment-body">{{text}}</p>
+            </div>
+        </div>
+        {{#if canEdit}}
+
+        <form id="edit-comment-form-{{id}}" style="display: none;">
+            <div class="mb-3">
+                <label for="edit-comment-{{id}}" class="form-label">Edit Comment:</label>
+                <textarea id="edit-comment-{{id}}" name="text" class="form-control" rows="4">{{text}}</textarea>
+            </div>
+            <input type="hidden" id="post-{{id}}" name="comment-{{id}}" value="{{id}}">
+            <button type="submit" class="btn btn-success">Update</button>
+        </form>
+        {{/if}}
+
+    </div>
+</div>

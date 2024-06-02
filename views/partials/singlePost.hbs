@@ -1,0 +1,46 @@
+<div class="container mt-4">
+    <div class="border p-3 mb-4" data-post-id="{{id}}">
+        <div class="row mb-2">
+            <div class="col">
+                <h2 class="post hover-pointer post-title" data-post-id="{{id}}">{{title}}</h2>
+            </div>
+            {{#if canEdit}}
+            <div class="col-auto">
+                <button class="btn btn-info btn-sm edit-post" data-post-id="{{id}}">Edit</button>
+                <button class="btn btn-danger btn-sm delete-post" data-post-id="{{id}}">Delete</button>
+            </div>
+            {{/if}}
+            <div class="col-auto text-end">
+                <p class="post-info text-muted">Posted by {{username}} on {{date}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="post hover-pointer post-body" data-post-id="{{id}}">{{text}}</p>
+            </div>
+        </div>
+
+        <div class="col mb-3">
+            <button data-post-id="{{id}}" class="btn btn-info toggle-form mb-2">Add a comment</button>
+            <form id="comment-form-{{id}}" style="display: none;">
+                <div class="mb-3">
+                    <label for="comment-{{id}}" class="form-label">Comment:</label>
+                    <textarea id="comment-{{id}}" name="text" class="form-control" rows="4"></textarea>
+                </div>
+                <input type="hidden" id="post-{{id}}" name="post-{{id}}" value="{{id}}">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+            {{#if canEdit}}
+
+            <form id="edit-post-form-{{id}}" style="display: none;">
+                <div class="mb-3">
+                    <label for="edit-post-{{id}}" class="form-label">Edit Post:</label>
+                    <textarea id="edit-post-{{id}}" name="text" class="form-control" rows="4">{{text}}</textarea>
+                </div>
+                <input type="hidden" id="post-{{id}}" name="post-{{id}}" value="{{id}}">
+                <button type="submit" class="btn btn-success">Update</button>
+            </form>
+            {{/if}}
+        </div>
+    </div>
+</div>
